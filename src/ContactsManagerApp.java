@@ -1,12 +1,11 @@
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 import util.*;
 
 public class ContactsManagerApp{
-
+    static HashMap<String, String> contactList = new HashMap<>();
     private static void cliMethod() {
 
         Input in = new Input();
@@ -16,8 +15,6 @@ public class ContactsManagerApp{
         int userInput = in.getInt(0,5);
 
         switch (userInput) {
-            case 0:
-                break;
             case 1:
 
                 break;
@@ -38,11 +35,13 @@ public class ContactsManagerApp{
     }
     public static void main(String[] args) {
 
+        System.out.println("Hello! Welcome to your Contacts Manager.\nWhat would you like to do?");
         cliMethod();
 
         Path contactsPath = Paths.get("src/contacts.txt");
-        System.out.println(Files.exists(contactsPath));
+//        System.out.println(Files.exists(contactsPath));
+        contactList.put("Jay", "2108835222");
+        contactList.put("Texas Hammer", "444444444");
 
-        HashMap<String, Contact> contactHashMap;
     }
 }
