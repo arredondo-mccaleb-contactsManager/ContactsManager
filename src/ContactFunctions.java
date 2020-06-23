@@ -13,6 +13,14 @@ public class ContactFunctions {
     static List<String> contactList = new ArrayList<>();
     static Input in = new Input();
 
+    public static void updateContactList() {
+        try {
+            contactList = Files.readAllLines(contactsPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void viewContacts(){
         // need to use Files.readAllLines()
         System.out.println("Here are all of your contacts.");
@@ -25,11 +33,12 @@ public class ContactFunctions {
             e.printStackTrace();
         }
         System.out.println("\nWhat would you like to do next?\n");
-        try {
-            contactList = Files.readAllLines(contactsPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        updateContactList();
+//        try {
+//            contactList = Files.readAllLines(contactsPath);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static void addContact(){
@@ -42,7 +51,31 @@ public class ContactFunctions {
             e.printStackTrace();
         }
         // redefine the List of contacts
+        updateContactList();
         System.out.println("Your contact as been added!");
         System.out.println("\nWhat would you like to do next?\n");
+    }
+
+    static String bucket;
+    public static void searchContact(){
+        updateContactList();
+
+        System.out.println("Please enter the name: ");
+        String userRequest = in.getString();
+
+        for(int x = 0; x < contactList.size(); x += 1){
+
+            if(contactList.get(x).contains(userRequest)){
+                bucket = contactList.get(x);
+                System.out.println("\nHere is the requested info: " + bucket + "\n");
+                break;
+            }else {
+                bucket = "";
+            }
+        }
+        if (bucket.length() == 0){
+            System.out.println("No contact by the name " + userRequest + " found.\n");
+            searchContact();
+        }
     }
 }
