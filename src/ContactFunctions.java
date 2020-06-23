@@ -1,5 +1,4 @@
 import util.Input;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,10 +21,10 @@ public class ContactFunctions {
     }
 
     public static void viewContacts(){
-        // need to use Files.readAllLines()
         System.out.println("Here are all of your contacts.");
         try {
             List<String> showContacts = Files.readAllLines(contactsPath);
+                System.out.println("|Name    |  Phone Number:");
             for(String contact: showContacts) {
                 System.out.println(contact);
             }
@@ -45,7 +44,6 @@ public class ContactFunctions {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // redefine the List of contacts
         updateContactList();
         System.out.println("Your contact as been added!");
         System.out.println("\nWhat would you like to do next?\n");
@@ -78,19 +76,18 @@ public class ContactFunctions {
     public static void deleteContact(){
         updateContactList();
         System.out.println("Which contact would you like to delete?");
-        int number = 1;
+        int number = 0;
         for(String contact: contactList){
             System.out.println(number++ + ": " + contact);
         }
-        int userChoice = in.getInt(1, contactList.size());
+        int userChoice = in.getInt(0, contactList.size());
+        System.out.println("Removing contact: " + contactList.get(userChoice));
         contactList.remove(userChoice);
-        System.out.println(contactList.remove(userChoice));
         try {
             Files.write(contactsPath, contactList);
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        updateContactList();
         System.out.println("That contact has been deleted!");
         System.out.println("\nWhat would you like to do next?\n");
 
