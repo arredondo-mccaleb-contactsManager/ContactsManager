@@ -34,7 +34,8 @@ public class ContactsManagerApp{
                 break;
             // delete a contact
             case 4:
-
+                ContactFunctions.deleteContact();
+                cliMethod();
                 break;
             // exit
             case 5:

@@ -34,11 +34,6 @@ public class ContactFunctions {
         }
         System.out.println("\nWhat would you like to do next?\n");
         updateContactList();
-//        try {
-//            contactList = Files.readAllLines(contactsPath);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public static void addContact(){
@@ -77,5 +72,27 @@ public class ContactFunctions {
             System.out.println("No contact by the name " + userRequest + " found.\n");
             searchContact();
         }
+        System.out.println("\nWhat would you like to do next?\n");
+    }
+
+    public static void deleteContact(){
+        updateContactList();
+        System.out.println("Which contact would you like to delete?");
+        int number = 1;
+        for(String contact: contactList){
+            System.out.println(number++ + ": " + contact);
+        }
+        int userChoice = in.getInt(1, contactList.size());
+        contactList.remove(userChoice);
+        System.out.println(contactList.remove(userChoice));
+        try {
+            Files.write(contactsPath, contactList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        updateContactList();
+        System.out.println("That contact has been deleted!");
+        System.out.println("\nWhat would you like to do next?\n");
+
     }
 }
