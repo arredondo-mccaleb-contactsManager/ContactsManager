@@ -31,7 +31,6 @@ public class ContactFunctions {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("\nWhat would you like to do next?\n");
         updateContactList();
     }
 
@@ -46,7 +45,6 @@ public class ContactFunctions {
         }
         updateContactList();
         System.out.println("Your contact as been added!");
-        System.out.println("\nWhat would you like to do next?\n");
     }
 
     static String bucket;
@@ -70,7 +68,6 @@ public class ContactFunctions {
             System.out.println("No contact by the name " + userRequest + " found.\n");
             searchContact();
         }
-        System.out.println("\nWhat would you like to do next?\n");
     }
 
     public static void deleteContact(){
@@ -89,7 +86,5 @@ public class ContactFunctions {
             e.printStackTrace();
         }
         System.out.println("That contact has been deleted!");
-        System.out.println("\nWhat would you like to do next?\n");
-
     }
 }
