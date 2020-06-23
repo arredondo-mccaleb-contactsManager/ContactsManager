@@ -29,7 +29,8 @@ public class ContactsManagerApp{
                 break;
             // search contact by name
             case 3:
-
+                ContactFunctions.searchContact();
+                cliMethod();
                 break;
             // delete a contact
             case 4:
