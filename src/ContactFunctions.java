@@ -21,10 +21,10 @@ public class ContactFunctions {
     }
 
     public static void viewContacts(){
-        System.out.println("Here are all of your contacts.");
+        System.out.println("Here are all of your contacts.\n");
         try {
             List<String> showContacts = Files.readAllLines(contactsPath);
-                System.out.println("|Name    |  Phone Number:");
+                System.out.println("Name    |  Phone Number\n-----------------------");
             for(String contact: showContacts) {
                 System.out.println(contact);
             }
