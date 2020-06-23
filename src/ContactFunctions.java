@@ -7,12 +7,23 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactFunctions {
+public class ContactFunctions extends Contact {
     static Path contactsPath = Paths.get("src/contacts.txt");
     static List<String> contactList = new ArrayList<>();
+    static List<Contact> contactObjects = new ArrayList<>();
     static Input in = new Input();
 
+
     public static void updateContactList() {
+        List<String> tempList = new ArrayList<>();
+        try {
+            tempList = Files.readAllLines(contactsPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        contactObjects = Contact.contactStringsToContacts(tempList);
+
+
         try {
             contactList = Files.readAllLines(contactsPath);
         } catch (IOException e) {
@@ -37,10 +48,23 @@ public class ContactFunctions {
 
     public static void addContact(){
         System.out.println("Please enter the name and phone number you would like to add.");
-        List<String> newContacts = new ArrayList<>();
-        newContacts.add(in.getString());
+        System.out.println("Name: ");
+        String name = in.getString();
+        System.out.println("Number: ");
+        String num = in.getString();
+//        Contact newContactObject = new Contact(name, num);
+
+        contactObjects.add(new Contact(name, num));
+
+        List<String> contactString = Contact.contactsToContactStrings(contactObjects);
+
+
+
+
+//        List<String> newContacts = new ArrayList<>();
+//        newContacts.add(in.getString());
         try {
-            Files.write(contactsPath, newContacts, StandardOpenOption.APPEND);
+            Files.write(contactsPath, contactString, StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }

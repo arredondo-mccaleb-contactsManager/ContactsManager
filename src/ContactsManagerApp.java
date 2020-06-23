@@ -39,5 +39,6 @@ public class ContactsManagerApp{
 
         System.out.println("Hello! Welcome to your Contacts Manager.\nWhat would you like to do?");
         cliMethod();
+//        ContactFunctions.updateContactList();
     }
 }
