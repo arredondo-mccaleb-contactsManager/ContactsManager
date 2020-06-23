@@ -4,6 +4,7 @@ public class ContactsManagerApp{
 
     private static void cliMethod() {
         Input in = new Input();
+        System.out.println("\nWhat would you like to do?\n");
         System.out.println("1. View contacts.\n2. Add a new contact.\n3. Search a contact by name.\n4. Delete an existing contact.\n5. Exit.\nEnter an option (1, 2, 3, 4, or 5): ");
         int userInput = in.getInt(1,5);
         switch (userInput) {
@@ -37,7 +38,7 @@ public class ContactsManagerApp{
     }
     public static void main(String[] args) {
 
-        System.out.println("Hello! Welcome to your Contacts Manager.\nWhat would you like to do?");
+        System.out.println("Hello! Welcome to your Contacts Manager.");
         cliMethod();
     }
 }
